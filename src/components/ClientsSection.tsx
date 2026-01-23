@@ -13,11 +13,11 @@ import {
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 
 // Import logos reales
-import logoFNA from "../assets/transmilenio-vector-logo.png";
-import logoUniversidad from "../assets/transmilenio-vector-logo.png";
-import logoComredes from "../assets/transmilenio-vector-logo.png";
+import logoFNA from "../assets/fna.jpg";
+import logoUniversidad from "../assets/u-distrital.jpg";
+import logoComredes from "../assets/comredes.png";
 import logoTransmilenio from "../assets/transmilenio-vector-logo.png";
-import logoPear from "../assets/transmilenio-vector-logo.png";
+import logoPear from "../assets/pear-solutions.webp";
 
 const clients = [
   {
@@ -39,7 +39,7 @@ const clients = [
     stats: "3,850 cámaras",
   },
   {
-    name: "INA Ahorro",
+    name: "FNA Ahorro",
     industry: "Finanzas",
     icon: TrendingUp,
     logo: logoFNA,
@@ -125,7 +125,7 @@ export function ClientsSection() {
             <span className="bg-gradient-to-r from-[#36A9E1] via-[#2E3192] to-[#662483] bg-clip-text text-transparent">Éxito</span>
           </h2>
           <p className="text-purple-200 mt-4 text-lg">
-            Empresas líderes confían en Bongo Analytics para impulsar su crecimiento
+            Empresas líderes confían en Poinnet para impulsar su crecimiento
           </p>
         </motion.div>
 

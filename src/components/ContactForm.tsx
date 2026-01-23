@@ -9,11 +9,13 @@ import {
   Send,
   CheckCircle2,
   Sparkles,
+  AlertCircle,
 } from "lucide-react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 import { Label } from "./ui/label";
+import { enviarFormularioContacto } from "../services/contactService";
 
 interface ContactFormProps {
   onClose?: () => void;
@@ -23,38 +25,56 @@ export function ContactForm({ onClose }: ContactFormProps) {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    company: "",
-    phone: "",
+    empresa: "",
+    telefono: "",
     message: "",
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setError(null);
 
-    // Simular envío de formulario
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    try {
+      // Enviar formulario usando el servicio
+      await enviarFormularioContacto({
+        nombre: formData.name,
+        email: formData.email,
+        mensaje: formData.message,
+        empresa: formData.empresa || undefined,
+        telefono: formData.telefono || undefined,
+      });
 
-    setIsSubmitted(true);
-    setIsSubmitting(false);
+      setIsSubmitted(true);
+      setIsSubmitting(false);
 
-    // Cerrar después de 2 segundos
-    setTimeout(() => {
-      onClose?.();
-      // Reset form
+      // Cerrar después de 2 segundos
       setTimeout(() => {
-        setIsSubmitted(false);
-        setFormData({
-          name: "",
-          email: "",
-          company: "",
-          phone: "",
-          message: "",
-        });
-      }, 300);
-    }, 2000);
+        onClose?.();
+        // Reset form
+        setTimeout(() => {
+          setIsSubmitted(false);
+          setFormData({
+            name: "",
+            email: "",
+            empresa: "",
+            telefono: "",
+            message: "",
+          });
+        }, 300);
+      }, 2000);
+    } catch (err) {
+      // Manejar errores
+      setIsSubmitting(false);
+      setError(
+        err instanceof Error
+          ? err.message
+          : "Error al enviar el formulario. Por favor, intenta nuevamente."
+      );
+    }
   };
 
   const handleChange = (
@@ -75,7 +95,7 @@ export function ContactForm({ onClose }: ContactFormProps) {
         transition={{ duration: 0.5 }}
       >
         <motion.div
-          className="w-24 h-24 rounded-full bg-gradient-to-br from-[#2E3192] to-[#36A9E1] flex items-center justify-center mb-6 shadow-2xl"
+          className="w-24 h-24 rounded-full bg-gradient-to-br from-[#0667ae] to-[#28a0c9] flex items-center justify-center mb-6 shadow-2xl"
           animate={{
             scale: [1, 1.1, 1],
             rotate: [0, 360],
@@ -100,9 +120,9 @@ export function ContactForm({ onClose }: ContactFormProps) {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3 }}
         >
-          <Sparkles className="text-[#36A9E1]" size={20} />
-          <Sparkles className="text-[#2E3192]" size={20} />
-          <Sparkles className="text-[#662483]" size={20} />
+          <Sparkles className="text-[#28a0c9]" size={20} />
+          <Sparkles className="text-[#0667ae]" size={20} />
+          <Sparkles className="text-[#5dd7d9]" size={20} />
         </motion.div>
       </motion.div>
     );
@@ -116,20 +136,20 @@ export function ContactForm({ onClose }: ContactFormProps) {
       transition={{ duration: 0.3 }}
     >
       {/* Gradientes decorativos */}
-      <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-[#2E3192]/20 to-transparent rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-tr from-[#36A9E1]/20 to-transparent rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-[#0667ae]/20 to-transparent rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-tr from-[#28a0c9]/20 to-transparent rounded-full blur-3xl pointer-events-none" />
 
       <div className="relative z-10">
         {/* Header */}
         <div className="text-center mb-8">
           <motion.div
-            className="inline-flex items-center gap-3 bg-gradient-to-r from-[#2E3192]/10 via-[#36A9E1]/10 to-[#662483]/10 px-6 py-3 rounded-full mb-6 border border-[#36A9E1]/20"
+            className="inline-flex items-center gap-3 bg-gradient-to-r from-[#0667ae]/10 via-[#28a0c9]/10 to-[#5dd7d9]/10 px-6 py-3 rounded-full mb-6 border border-[#28a0c9]/20"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
           >
-            <Sparkles className="text-[#36A9E1]" size={20} />
-            <span className="text-[#2E3192]">
+            <Sparkles className="text-[#28a0c9]" size={20} />
+            <span className="text-[#0667ae]">
               Contáctanos
             </span>
           </motion.div>
@@ -141,7 +161,7 @@ export function ContactForm({ onClose }: ContactFormProps) {
             transition={{ delay: 0.2 }}
           >
             Hablemos sobre{" "}
-            <span className="bg-gradient-to-r from-[#2E3192] via-[#662483] to-[#36A9E1] bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[#0667ae] via-[#5dd7d9] to-[#28a0c9] bg-clip-text text-transparent">
               tu proyecto
             </span>
           </motion.h2>
@@ -164,7 +184,7 @@ export function ContactForm({ onClose }: ContactFormProps) {
             transition={{ delay: 0.4 }}
           >
             <Label htmlFor="name" className="text-gray-700 mb-2 flex items-center gap-2">
-              <User size={18} className="text-[#2E3192]" />
+              <User size={18} className="text-[#0667ae]" />
               Nombre Completo
             </Label>
             <div className="relative group">
@@ -175,10 +195,10 @@ export function ContactForm({ onClose }: ContactFormProps) {
                 required
                 value={formData.name}
                 onChange={handleChange}
-                className="border-gray-200 focus:border-[#36A9E1] focus:ring-[#36A9E1]/20 transition-all"
+                className="border-gray-200 focus:border-[#28a0c9] focus:ring-[#28a0c9]/20 transition-all text-[#0667ae]"
                 placeholder="Juan Pérez"
               />
-              <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#2E3192]/5 to-[#36A9E1]/5 rounded-lg opacity-0 group-focus-within:opacity-100 blur transition-opacity" />
+              <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#0667ae]/5 to-[#28a0c9]/5 rounded-lg opacity-0 group-focus-within:opacity-100 blur transition-opacity" />
             </div>
           </motion.div>
 
@@ -188,7 +208,7 @@ export function ContactForm({ onClose }: ContactFormProps) {
             transition={{ delay: 0.5 }}
           >
             <Label htmlFor="email" className="text-gray-700 mb-2 flex items-center gap-2">
-              <Mail size={18} className="text-[#2E3192]" />
+              <Mail size={18} className="text-[#0667ae]" />
               Email
             </Label>
             <div className="relative group">
@@ -199,10 +219,10 @@ export function ContactForm({ onClose }: ContactFormProps) {
                 required
                 value={formData.email}
                 onChange={handleChange}
-                className="border-gray-200 focus:border-[#36A9E1] focus:ring-[#36A9E1]/20 transition-all"
+                className="border-gray-200 focus:border-[#28a0c9] focus:ring-[#28a0c9]/20 transition-all text-[#0667ae]"
                 placeholder="juan@empresa.com"
               />
-              <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#2E3192]/5 to-[#36A9E1]/5 rounded-lg opacity-0 group-focus-within:opacity-100 blur transition-opacity" />
+              <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#0667ae]/5 to-[#28a0c9]/5 rounded-lg opacity-0 group-focus-within:opacity-100 blur transition-opacity" />
             </div>
           </motion.div>
 
@@ -212,21 +232,21 @@ export function ContactForm({ onClose }: ContactFormProps) {
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.6 }}
             >
-              <Label htmlFor="company" className="text-gray-700 mb-2 flex items-center gap-2">
-                <Building2 size={18} className="text-[#2E3192]" />
+              <Label htmlFor="empresa" className="text-gray-700 mb-2 flex items-center gap-2">
+                <Building2 size={18} className="text-[#0667ae]" />
                 Empresa
               </Label>
               <div className="relative group">
                 <Input
-                  id="company"
-                  name="company"
+                  id="empresa"
+                  name="empresa"
                   type="text"
-                  value={formData.company}
+                  value={formData.empresa}
                   onChange={handleChange}
-                  className="border-gray-200 focus:border-[#36A9E1] focus:ring-[#36A9E1]/20 transition-all"
+                  className="border-gray-200 focus:border-[#28a0c9] focus:ring-[#28a0c9]/20 transition-all text-[#0667ae]"
                   placeholder="Tu Empresa S.A."
                 />
-                <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#2E3192]/5 to-[#36A9E1]/5 rounded-lg opacity-0 group-focus-within:opacity-100 blur transition-opacity" />
+                <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#0667ae]/5 to-[#28a0c9]/5 rounded-lg opacity-0 group-focus-within:opacity-100 blur transition-opacity" />
               </div>
             </motion.div>
 
@@ -235,21 +255,21 @@ export function ContactForm({ onClose }: ContactFormProps) {
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.7 }}
             >
-              <Label htmlFor="phone" className="text-gray-700 mb-2 flex items-center gap-2">
-                <Phone size={18} className="text-[#2E3192]" />
+              <Label htmlFor="telefono" className="text-gray-700 mb-2 flex items-center gap-2">
+                <Phone size={18} className="text-[#0667ae]" />
                 Teléfono
               </Label>
               <div className="relative group">
                 <Input
-                  id="phone"
-                  name="phone"
+                  id="telefono"
+                  name="telefono"
                   type="tel"
-                  value={formData.phone}
+                  value={formData.telefono}
                   onChange={handleChange}
-                  className="border-gray-200 focus:border-[#36A9E1] focus:ring-[#36A9E1]/20 transition-all"
+                  className="border-gray-200 focus:border-[#28a0c9] focus:ring-[#28a0c9]/20 transition-all text-[#0667ae]"
                   placeholder="+1 234 567 8900"
                 />
-                <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#2E3192]/5 to-[#36A9E1]/5 rounded-lg opacity-0 group-focus-within:opacity-100 blur transition-opacity" />
+                <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#0667ae]/5 to-[#28a0c9]/5 rounded-lg opacity-0 group-focus-within:opacity-100 blur transition-opacity" />
               </div>
             </motion.div>
           </div>
@@ -260,7 +280,7 @@ export function ContactForm({ onClose }: ContactFormProps) {
             transition={{ delay: 0.8 }}
           >
             <Label htmlFor="message" className="text-gray-700 mb-2 flex items-center gap-2">
-              <MessageSquare size={18} className="text-[#2E3192]" />
+              <MessageSquare size={18} className="text-[#0667ae]" />
               Mensaje
             </Label>
             <div className="relative group">
@@ -270,13 +290,25 @@ export function ContactForm({ onClose }: ContactFormProps) {
                 required
                 value={formData.message}
                 onChange={handleChange}
-                rows={5}
-                className="border-gray-200 focus:border-[#36A9E1] focus:ring-[#36A9E1]/20 transition-all resize-none"
+                rows={6}
+                className="border-gray-200 focus:border-[#28a0c9] focus:ring-[#28a0c9]/20 transition-all resize-none text-[#0667ae]"
                 placeholder="Cuéntanos sobre tu proyecto y cómo podemos ayudarte..."
               />
-              <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#2E3192]/5 to-[#36A9E1]/5 rounded-lg opacity-0 group-focus-within:opacity-100 blur transition-opacity" />
+              <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#0667ae]/5 to-[#28a0c9]/5 rounded-lg opacity-0 group-focus-within:opacity-100 blur transition-opacity" />
             </div>
           </motion.div>
+
+          {/* Mensaje de error */}
+          {error && (
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="bg-red-50 border border-red-200 rounded-lg p-4 flex items-center gap-3"
+            >
+              <AlertCircle className="text-red-600 flex-shrink-0" size={20} />
+              <p className="text-red-700 text-sm">{error}</p>
+            </motion.div>
+          )}
 
           {/* Botón de envío */}
           <motion.div
@@ -285,12 +317,12 @@ export function ContactForm({ onClose }: ContactFormProps) {
             transition={{ delay: 0.9 }}
             className="relative pt-4"
           >
-            <div className="absolute -inset-1 bg-gradient-to-r from-[#2E3192] via-[#36A9E1] to-[#662483] rounded-xl blur-lg opacity-40 group-hover:opacity-60 transition-opacity" />
+            <div className="absolute -inset-1 bg-gradient-to-r from-[#0667ae] via-[#28a0c9] to-[#5dd7d9] rounded-xl blur-lg opacity-40 group-hover:opacity-60 transition-opacity" />
 
             <Button
               type="submit"
               disabled={isSubmitting}
-              className="relative w-full bg-gradient-to-r from-[#2E3192] via-[#29235C] to-[#662483] hover:shadow-2xl hover:shadow-[#36A9E1]/30 transition-all duration-300 group text-lg py-6"
+              className="relative w-full bg-gradient-to-r from-[#0667ae] via-[#0667ae] to-[#5dd7d9] hover:shadow-2xl hover:shadow-[#28a0c9]/30 transition-all duration-300 group text-lg py-6"
             >
               {isSubmitting ? (
                 <span className="flex items-center gap-3">
@@ -337,10 +369,10 @@ export function ContactForm({ onClose }: ContactFormProps) {
           <p className="text-gray-500 text-sm">
             También puedes contactarnos directamente en{" "}
             <a
-              href="mailto:contacto@bongoanalytics.com"
-              className="text-[#36A9E1] hover:text-[#2E3192] transition-colors"
+              href="mailto:contacto@Poinnetanalytics.com"
+              className="text-[#28a0c9] hover:text-[#0667ae] transition-colors"
             >
-              contacto@bongoanalytics.com
+              contacto@Poinnetanalytics.com
             </a>
           </p>
         </motion.div>

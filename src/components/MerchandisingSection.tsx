@@ -96,7 +96,7 @@ export function MerchandisingSection() {
           >
             <ShoppingBag className="text-[#36A9E1]" size={32} />
             <span className="text-[#36A9E1]">
-              Merchandising Bongo
+              Merchandising Poinnet
             </span>
           </motion.div>
           <h2 className="text-white mb-6">
@@ -108,7 +108,7 @@ export function MerchandisingSection() {
             hasta merchandising premium, cada elemento refleja
             la esencia de{" "}
             <strong className="text-white">
-              Bongo Analytics
+              Poinnet
             </strong>
             .
           </p>

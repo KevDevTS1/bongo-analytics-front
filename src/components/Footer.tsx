@@ -9,8 +9,8 @@ import {
   MapPin,
   // Heart, // No se usa en el código
 } from "lucide-react";
-import { ImageWithFallback } from "./figma/ImageWithFallback"; // Asegúrate de que esta ruta sea correcta
 
+import logo from "../assets/Logo_Poinnet_Blanco.png";
 export function Footer() {
   const currentYear = new Date().getFullYear();
 
@@ -24,10 +24,10 @@ export function Footer() {
     {
       title: "Productos",
       links: [
-        "Bongo Insights",
-        "Bongo Predict",
-        "Bongo DataHub",
-        "Bongo AI Studio",
+        "Poinnet Insights",
+        "Poinnet Predict",
+        "Poinnet DataHub",
+        "Poinnet AI Studio",
       ],
     },
     {
@@ -50,7 +50,7 @@ export function Footer() {
 
   return (
     // Se elimina pt-16
-    <footer className="bg-[#2E3192] text-white pb-8 relative overflow-hidden">
+    <footer className="bg-[#0667ae] text-white pb-8 relative overflow-hidden">
       {/* 🌟 CURVA SUPERIOR 🌟 */}
       {/* Este div crea una curva cóncava usando clip-path. 
         El 'bg-white' DEBE COINCIDIR con el color de fondo de la sección anterior. 
@@ -77,8 +77,8 @@ export function Footer() {
               whileHover={{ scale: 1.05 }}
             >
               <img
-                src="https://bongoanalytics.com/assets/img/icon2.png"
-                className="h-20 w-40 invert"
+                src={logo}
+                className="h-20 w-40 "
               />
             </motion.div>
             {/* Contact Info */}
@@ -88,7 +88,7 @@ export function Footer() {
                 whileHover={{ x: 5 }}
               >
                 <Mail size={18} />
-                <span>info@bongoanalytics.com</span>
+                <span>info@Poinnetanalytics.com</span>
               </motion.div>
 
               <motion.div
@@ -118,7 +118,7 @@ export function Footer() {
                   <motion.li key={link} whileHover={{ x: 5 }}>
                     <a
                       href="#"
-                      className="text-white/70 hover:text-white transition-colors"
+                      className="text-white/70 hover:text-white"
                     >
                       {link}
                     </a>
@@ -139,8 +139,8 @@ export function Footer() {
                     key={social.label}
                     href={social.href}
                     aria-label={social.label}
-                    className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#36A9E1] hover:text-white transition-colors"
-                    whileHover={{ scale: 1.2, rotate: 360 }}
+                    className="w-10 h-10 rounded-full  flex items-center justify-center text-white hover:bg-[#36A9E1] hover:text-white"
+                    whileHover={{ scale: 1.2, rotate: 360, color: "#ffffff" }}
                     whileTap={{ scale: 0.9 }}
                     transition={{ duration: 0.3 }}
                   >
@@ -179,7 +179,7 @@ export function Footer() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5 }}
           >
-            © {currentYear} Bongo Analytics. Todos los derechos
+            © {currentYear} Poinnet. Todos los derechos
             reservados.
           </motion.p>
         </div>

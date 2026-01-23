@@ -15,16 +15,23 @@ export function HeroSection() {
     { number: "50+", label: "Empresas Optimizadas" },
   ];
 
+  const scrollToProducts = () => {
+    const productsSection = document.getElementById("soluciones");
+    if (productsSection) {
+      productsSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <section
       id="inicio"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#29235C]"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#0667ae]"
     >
       {/* Textura de fondo de marca */}
       <div className="absolute inset-0 pointer-events-none opacity-10">
         <ImageWithFallback
           src="https://cdn.pixabay.com/photo/2016/11/23/14/37/blur-1853262_1280.jpg"
-          alt="Textura Bongo"
+          alt="Textura Poinnet"
           className="w-full h-full object-cover"
         />
       </div>
@@ -89,7 +96,7 @@ export function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.4 }}
             >
-              En Bongo Analytics convertimos datos complejos en
+              En Poinnet convertimos datos complejos en
               información accionable. Utilizamos analítica
               avanzada, big data y machine learning para
               ayudarte a optimizar procesos, anticipar
@@ -105,7 +112,7 @@ export function HeroSection() {
             >
               <Button
                 size="lg"
-                className="bg-white text-[#2E3192] hover:bg-white/90 group shadow-lg px-6 py-3 rounded-xl transition-all"
+                className="bg-white text-[#0667ae] hover:bg-white/90 group shadow-lg px-6 py-3 rounded-xl transition-all"
               >
                 Obtener Consultoría
                 <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
@@ -115,6 +122,7 @@ export function HeroSection() {
                 size="lg"
                 variant="outline"
                 className="border-white text-white px-6 py-3 rounded-xl bg-white/20 hover:bg-white/30 backdrop-blur-xl shadow-lg transition-all"
+                onClick={scrollToProducts}
               >
                 Ver Soluciones
               </Button>
@@ -172,8 +180,8 @@ export function HeroSection() {
               animate={{ y: [0, -12, 0] }}
               transition={{ duration: 3, repeat: Infinity }}
             >
-              <BarChart2 className="text-[#2E3192]" size={28} />
-              <div className="text-sm text-[#2E3192] mt-1">
+              <BarChart2 className="text-[#0667ae]" size={28} />
+              <div className="text-sm text-[#0667ae] mt-1">
                 Análisis Predictivo
               </div>
             </motion.div>
@@ -187,8 +195,8 @@ export function HeroSection() {
                 delay: 1,
               }}
             >
-              <Cpu className="text-[#2E3192]" size={28} />
-              <div className="text-sm text-[#2E3192] mt-1">
+              <Cpu className="text-[#0667ae]" size={28} />
+              <div className="text-sm text-[#0667ae] mt-1">
                 Inteligencia Artificial
               </div>
             </motion.div>
