@@ -10,6 +10,8 @@ import {
   DialogTitle,
 } from "./ui/dialog";
 import { ContactForm } from "./ContactForm";
+import logo from "../assets/Logo_Poinnet.png";
+import catalogoPdf from "./Portafolio POINNET V7151024.pdf";
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -76,8 +78,8 @@ export function Header() {
               className="relative"
             >
               <img
-                src="https://bongoanalytics.com/assets/img/icon2.png"
-                alt="Bongo Analytics"
+                src={logo}
+                alt="Poinnet"
                 className="h-20 w-40 relative z-10"
               />
               {/* Glow en logo al hover */}
@@ -130,20 +132,38 @@ export function Header() {
                 );
               })}
 
+              {/* Enlace de catálogo */}
+              <motion.a
+                href={catalogoPdf}
+                download
+                className="relative px-4 py-2 group"
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: navItems.length * 0.08 }}
+                whileHover={{ scale: 1.05 }}
+              >
+                <span className="relative z-10 text-gray-700 group-hover:text-[#0667ae] transition-colors">
+                  Catálogo
+                </span>
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-[#0667ae]/5 via-[#28a0c9]/5 to-[#5dd7d9]/5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                />
+              </motion.a>
+
               {/* Botón de contacto premium */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.4 }}
+                transition={{ delay: (navItems.length + 1) * 0.08 }}
                 className="ml-4 relative"
               >
                 {/* Glow effect */}
-                <div className="absolute -inset-1 bg-gradient-to-r from-[#2E3192] via-[#36A9E1] to-[#662483] rounded-xl blur-lg opacity-30 group-hover:opacity-50 transition-opacity" />
+                <div className="absolute -inset-1 bg-gradient-to-r from-[#0667ae] via-[#28a0c9] to-[#5dd7d9] rounded-xl blur-lg opacity-30 group-hover:opacity-50 transition-opacity" />
                 
                 <Button
                   variant="default"
                   onClick={() => setIsContactOpen(true)}
-                  className="relative bg-gradient-to-r from-[#2E3192] via-[#29235C] to-[#662483] hover:shadow-xl hover:shadow-[#36A9E1]/20 transition-all duration-300 group overflow-hidden"
+                  className="relative bg-gradient-to-r from-[#0667ae] via-[#28a0c9] to-[#5dd7d9] hover:shadow-xl hover:shadow-[#36A9E1]/20 transition-all duration-300 group overflow-hidden"
                 >
                   {/* Shimmer effect */}
                   <motion.div
@@ -222,11 +242,27 @@ export function Header() {
                 </motion.a>
               ))}
 
+              <motion.a
+                href={catalogoPdf}
+                download
+                className="relative px-4 py-3 rounded-lg group overflow-hidden"
+                onClick={() => setIsMobileMenuOpen(false)}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: navItems.length * 0.05 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-[#0667ae]/5 via-[#28a0c9]/5 to-[#5dd7d9]/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+                <span className="relative text-gray-700 group-hover:text-[#0667ae] transition-colors">
+                  Catálogo
+                </span>
+              </motion.a>
+
               {/* Botón mobile */}
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: navItems.length * 0.05 }}
+                transition={{ delay: (navItems.length + 1) * 0.05 }}
                 className="mt-2 relative"
               >
                 <div className="absolute -inset-0.5 bg-gradient-to-r from-[#2E3192] via-[#36A9E1] to-[#662483] rounded-lg blur opacity-30" />
@@ -250,7 +286,7 @@ export function Header() {
 
       {/* Modal de contacto */}
       <Dialog open={isContactOpen} onOpenChange={setIsContactOpen}>
-        <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
+        <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto bg-white">
           <DialogHeader className="sr-only">
             <DialogTitle>Formulario de Contacto</DialogTitle>
             <DialogDescription>

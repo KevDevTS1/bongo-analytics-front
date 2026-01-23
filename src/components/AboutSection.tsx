@@ -19,48 +19,48 @@ const features = [
     title: "Big Data",
     description:
       "Procesamos grandes volúmenes de datos para extraer patrones valiosos y tendencias ocultas.",
-    color: "from-[#2E3192] to-[#662483]",
-    accent: "#36A9E1",
+    color: "from-[#0667ae] to-[#0667ae]",
+    accent: "#0667ae",
   },
   {
     icon: Brain,
     title: "Machine Learning",
     description:
       "Implementamos modelos predictivos avanzados que aprenden y mejoran continuamente.",
-    color: "from-[#662483] to-[#29235C]",
-    accent: "#36A9E1",
+    color: "from-[#0667ae] to-[#0667ae]",
+    accent: "#0667ae",
   },
   {
     icon: TrendingUp,
     title: "Analítica Avanzada",
     description:
       "Transformamos datos complejos en insights claros que impulsan decisiones estratégicas.",
-    color: "from-[#2E3192] to-[#29235C]",
-    accent: "#36A9E1",
+    color: "from-[#0667ae] to-[#0667ae]",
+    accent: "#0667ae",
   },
   {
     icon: Shield,
     title: "Seguridad y Privacidad",
     description:
       "Garantizamos la protección total de tu información con los más altos estándares.",
-    color: "from-[#29235C] to-[#2E3192]",
-    accent: "#36A9E1",
+    color: "from-[#0667ae] to-[#0667ae]",
+    accent: "#0667ae",
   },
   {
     icon: Zap,
     title: "Procesamiento en Tiempo Real",
     description:
       "Análisis instantáneo de datos para respuestas rápidas a cambios del mercado.",
-    color: "from-[#662483] to-[#2E3192]",
-    accent: "#36A9E1",
+    color: "from-[#0667ae] to-[#0667ae]",
+    accent: "#0667ae",
   },
   {
     icon: Target,
     title: "Soluciones Personalizadas",
     description:
       "Desarrollamos estrategias únicas adaptadas a tus necesidades específicas.",
-    color: "from-[#2E3192] to-[#662483]",
-    accent: "#36A9E1",
+    color: "from-[#0667ae] to-[#0667ae]",
+    accent: "#0667ae",
   },
 ];
 
@@ -113,7 +113,7 @@ export function AboutSection() {
       >
         <ImageWithFallback
           src="https://cdn.pixabay.com/photo/2020/03/17/17/46/database-4941338_1280.png"
-          alt="Vector Bongo"
+          alt="Vector Poinnet"
           className="w-full h-full object-contain"
         />
       </motion.div>
@@ -133,7 +133,7 @@ export function AboutSection() {
       >
         <ImageWithFallback
           src="https://cdn.pixabay.com/photo/2017/02/27/18/23/cpu-2103856_1280.png"
-          alt="Vector Bongo"
+          alt="Vector Poinnet"
           className="w-full h-full object-contain"
         />
       </motion.div>
@@ -168,7 +168,7 @@ export function AboutSection() {
           <p className="text-gray-600 text-xl md:text-2xl max-w-4xl mx-auto leading-relaxed">
             Somos{" "}
             <strong className="text-[#2E3192]">
-              Bongo Analytics
+              Poinnet
             </strong>
             , una empresa apasionada por descubrir el verdadero
             valor de los datos. Nos especializamos en{" "}
@@ -195,10 +195,10 @@ export function AboutSection() {
           transition={{ duration: 0.8, delay: 0.3 }}
         >
           {/* Glow effect */}
-          <div className="absolute -inset-1 bg-gradient-to-r from-[#2E3192] via-[#36A9E1] to-[#662483] rounded-[2rem] blur-2xl opacity-20" />
+          <div className="absolute -inset-1 bg-gradient-to-r from-[#0667ae] via-[#0667ae] to-[#0667ae] rounded-[2rem] blur-2xl opacity-20" />
 
-          <div className="relative bg-gradient-to-br from-[#2E3192] via-[#29235C] to-[#662483] rounded-3xl p-1">
-            <div className="bg-[#2E3192] rounded-[1.4rem] p-12 md:p-16 backdrop-blur-xl">
+          <div className="relative bg-gradient-to-br from-[#0667ae] via-[#29235C] to-[#0667ae] rounded-3xl p-1">
+            <div className="bg-[#0667ae] rounded-[1.4rem] p-12 md:p-16 backdrop-blur-xl">
               {/* Icon Badge */}
               <motion.div
                 className="w-20 h-20 mx-auto mb-8 rounded-2xl bg-gradient-to-br from-[#36A9E1] to-white/20 flex items-center justify-center shadow-2xl"
