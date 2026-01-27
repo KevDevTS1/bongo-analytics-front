@@ -136,32 +136,32 @@ const productDetails: Record<string, {
     longDescription: "El servicio de Renting de Equipos de Poinnet está diseñado para empresas que buscan mantener su infraestructura tecnológica al día sin comprometer su flujo de caja. Ofrecemos una amplia gama de equipos, desde servidores blade de alta densidad hasta dispositivos móviles empresariales, todos seleccionados de los mejores fabricantes del mercado. Nuestro modelo de renting incluye no solo el equipo, sino también mantenimiento preventivo, actualizaciones de firmware, soporte técnico especializado y opciones de escalamiento. Esto permite a las empresas adaptarse rápidamente a cambios en la demanda, probar nuevas tecnologías sin compromiso a largo plazo, y mantener siempre la infraestructura más adecuada para sus necesidades operativas."
   },
   "data-platform": {
-    overview: "Poinnet Data Platform es una infraestructura completa y escalable diseñada para la gestión, almacenamiento y análisis de grandes volúmenes de datos empresariales. Integra múltiples fuentes de datos en una plataforma unificada que permite análisis en tiempo real y procesamiento de big data.",
+    overview: "LUPAAP es un CRM analítico que te ayuda a tomar decisiones basadas en los datos de tu negocio y no en tu intuición. Optimiza la recolección de datos con formularios digitales y entrega estadísticas en tiempo real.",
     benefits: [
-      "Almacenamiento escalable hasta petabytes de datos",
-      "Procesamiento de datos en tiempo real y batch",
-      "Integración con más de 100 fuentes de datos",
-      "Análisis de datos sin necesidad de moverlos",
-      "Seguridad y cumplimiento de normativas",
-      "Reducción de costos de infraestructura hasta 60%"
+      "Procesos de recolección de datos más ágiles",
+      "Estadísticas en tiempo real para decisiones oportunas",
+      "Gestión documental optimizada y casi inmediata",
+      "Reducción del tiempo de diligenciamiento de formularios",
+      "Escenarios de competencia y publicación de resultados",
+      "Capacitación de usuarios con menores costos de evaluación"
     ],
     useCases: [
-      "Data lake centralizado para toda la organización",
-      "Análisis de datos históricos y tendencias",
-      "Integración de datos de múltiples sistemas",
-      "Preparación de datos para machine learning",
-      "Business intelligence y reporting avanzado",
-      "Gobernanza y calidad de datos"
+      "Levantamiento de información en campo con formularios digitales",
+      "Seguimiento de operaciones y resultados en tiempo real",
+      "Gestión documental para procesos comerciales y operativos",
+      "Concursos internos con publicación de resultados",
+      "Evaluación y capacitación de equipos",
+      "Toma de decisiones basada en datos confiables"
     ],
     technicalSpecs: [
-      "Arquitectura distribuida y altamente disponible",
-      "Soporte para datos estructurados y no estructurados",
-      "Procesamiento con Spark y Flink",
-      "Almacenamiento en formato columnar optimizado",
-      "API REST y GraphQL para acceso a datos",
-      "Herramientas de ETL/ELT visuales"
+      "Formularios digitales configurables",
+      "Paneles con métricas en tiempo real",
+      "Flujos de gestión documental",
+      "Módulos de competencia y resultados",
+      "Administración de usuarios y roles",
+      "Reportes exportables"
     ],
-    longDescription: "Poinnet Data Platform es el corazón de cualquier estrategia de datos moderna. La plataforma está construida sobre una arquitectura distribuida que puede escalar desde terabytes hasta petabytes, adaptándose dinámicamente a las necesidades de tu organización. Soporta tanto procesamiento en tiempo real para análisis de streaming como procesamiento batch para análisis históricos profundos. Una de las características más poderosas es la capacidad de integrar datos de múltiples fuentes - desde bases de datos relacionales tradicionales hasta APIs, archivos en la nube, IoT y más - sin necesidad de mover físicamente los datos. Esto se logra mediante nuestra tecnología de virtualización de datos. La plataforma incluye herramientas avanzadas de gobernanza, permitiendo establecer políticas de acceso, calidad y cumplimiento que se aplican automáticamente en toda la organización."
+    longDescription: "LUPAAP centraliza la operación de tu negocio en un CRM analítico que combina formularios digitales, métricas en tiempo real y gestión documental ágil. Permite reducir tiempos de diligenciamiento, mejorar la calidad de los datos y facilitar la toma de decisiones oportunas. Además, incluye mecanismos de competencia entre empleados y publicación de resultados, así como módulos de capacitación y evaluación con reducción de costos. Es una herramienta pensada para equipos comerciales y operativos que necesitan control, trazabilidad y velocidad en sus procesos."
   },
   "cloud-solutions": {
     overview: "Nuestras soluciones en la nube ofrecen infraestructura y plataforma como servicio para optimizar tus operaciones, reducir costos y mejorar la agilidad de tu negocio. Desde migraciones completas hasta arquitecturas híbridas, proporcionamos la flexibilidad que necesitas.",
@@ -511,10 +511,17 @@ export function ProductDetailPage() {
                 Contacta con nuestro equipo para una consultoría personalizada
               </p>
               <div className="flex flex-wrap justify-center gap-4">
-                <Button className="bg-white text-[#0667ae] hover:bg-white/90 px-8 py-6 text-lg">
+                <Button
+                  className="bg-white text-[#0667ae] hover:bg-white/90 px-8 py-6 text-lg"
+                  onClick={() => setIsContactOpen(true)}
+                >
                   Solicitar Consultoría
                 </Button>
-                <Button variant="outline" className="border-white text-white hover:bg-white/10 px-8 py-6 text-lg">
+                <Button
+                  variant="outline"
+                  className="border-white text-white hover:bg-white/10 px-8 py-6 text-lg"
+                  onClick={() => navigate("/#soluciones")}
+                >
                   Ver Más Servicios
                 </Button>
               </div>

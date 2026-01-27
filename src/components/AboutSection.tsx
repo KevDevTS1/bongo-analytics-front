@@ -62,11 +62,118 @@ const features = [
     color: "from-[#0667ae] to-[#0667ae]",
     accent: "#0667ae",
   },
+  {
+    icon: Sparkles,
+    title: "LUPAAP",
+    description:
+      "CRM analítico para decidir con datos, optimizar formularios y acelerar la gestión documental.",
+    color: "from-[#0667ae] to-[#0667ae]",
+    accent: "#0667ae",
+  },
 ];
 
 export function AboutSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
+
+  const renderFeatureCard = (
+    feature: (typeof features)[number],
+    index: number,
+    delayOffset = 0,
+    className = ""
+  ) => {
+    const Icon = feature.icon;
+
+    return (
+      <motion.div
+        key={feature.title}
+        initial={{ opacity: 0, y: 50 }}
+        animate={isInView ? { opacity: 1, y: 0 } : {}}
+        transition={{
+          duration: 0.6,
+          delay: 0.4 + (delayOffset + index) * 0.1,
+          ease: "easeOut",
+        }}
+        whileHover={{
+          y: -15,
+          scale: 1.03,
+          transition: { duration: 0.3 },
+        }}
+        className={`group relative ${className}`}
+      >
+        {/* Glow effect on hover */}
+        <div
+          className={`absolute -inset-0.5 bg-gradient-to-br ${feature.color} rounded-2xl blur-xl opacity-0 group-hover:opacity-30 transition-opacity duration-500`}
+        />
+
+        <div className="relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all border border-gray-100 overflow-hidden h-full">
+          {/* Animated background gradient */}
+          <motion.div
+            className={`absolute inset-0 bg-gradient-to-br ${feature.color} opacity-0 group-hover:opacity-[0.07] transition-opacity duration-500`}
+          />
+
+          {/* Top accent line */}
+          <motion.div
+            className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${feature.color}`}
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            transition={{
+              duration: 0.8,
+              delay: 0.5 + (delayOffset + index) * 0.1,
+            }}
+          />
+
+          {/* Icon container */}
+          <motion.div
+            className={`w-20 h-20 rounded-2xl bg-gradient-to-br ${feature.color} flex items-center justify-center mb-6 relative z-10 shadow-lg`}
+            whileHover={{
+              rotate: [0, -10, 10, -10, 0],
+              scale: 1.1,
+            }}
+            transition={{ duration: 0.6 }}
+          >
+            <Icon className="text-white" size={36} />
+
+            {/* Icon glow */}
+            <motion.div
+              className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${feature.color} blur-md opacity-0 group-hover:opacity-50`}
+              transition={{ duration: 0.3 }}
+            />
+          </motion.div>
+
+          <h3 className="text-gray-900 mb-4 relative z-10 text-2xl">
+            {feature.title}
+          </h3>
+
+          <p className="text-gray-600 relative z-10 text-lg leading-relaxed">
+            {feature.description}
+          </p>
+
+          {/* Decorative corner accent */}
+          <motion.div
+            className="absolute -bottom-8 -right-8 w-32 h-32 rounded-full"
+            style={{
+              background: `radial-gradient(circle at center, ${feature.accent}15, transparent)`,
+            }}
+            animate={{
+              scale: [1, 1.3, 1],
+              opacity: [0.3, 0.5, 0.3],
+            }}
+            transition={{
+              duration: 4,
+              repeat: Infinity,
+              delay: (delayOffset + index) * 0.3,
+            }}
+          />
+
+          {/* Hover accent line */}
+          <motion.div
+            className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r ${feature.color} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
+          />
+        </div>
+      </motion.div>
+    );
+  };
 
   return (
     <section
@@ -245,99 +352,7 @@ export function AboutSection() {
 
         {/* Features Grid - Premium Cards */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {features.map((feature, index) => {
-            const Icon = feature.icon;
-
-            return (
-              <motion.div
-                key={feature.title}
-                initial={{ opacity: 0, y: 50 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{
-                  duration: 0.6,
-                  delay: 0.4 + index * 0.1,
-                  ease: "easeOut",
-                }}
-                whileHover={{
-                  y: -15,
-                  scale: 1.03,
-                  transition: { duration: 0.3 },
-                }}
-                className="group relative"
-              >
-                {/* Glow effect on hover */}
-                <div
-                  className={`absolute -inset-0.5 bg-gradient-to-br ${feature.color} rounded-2xl blur-xl opacity-0 group-hover:opacity-30 transition-opacity duration-500`}
-                />
-
-                <div className="relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all border border-gray-100 overflow-hidden h-full">
-                  {/* Animated background gradient */}
-                  <motion.div
-                    className={`absolute inset-0 bg-gradient-to-br ${feature.color} opacity-0 group-hover:opacity-[0.07] transition-opacity duration-500`}
-                  />
-
-                  {/* Top accent line */}
-                  <motion.div
-                    className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${feature.color}`}
-                    initial={{ scaleX: 0 }}
-                    whileInView={{ scaleX: 1 }}
-                    transition={{
-                      duration: 0.8,
-                      delay: 0.5 + index * 0.1,
-                    }}
-                  />
-
-                  {/* Icon container */}
-                  <motion.div
-                    className={`w-20 h-20 rounded-2xl bg-gradient-to-br ${feature.color} flex items-center justify-center mb-6 relative z-10 shadow-lg`}
-                    whileHover={{
-                      rotate: [0, -10, 10, -10, 0],
-                      scale: 1.1,
-                    }}
-                    transition={{ duration: 0.6 }}
-                  >
-                    <Icon className="text-white" size={36} />
-
-                    {/* Icon glow */}
-                    <motion.div
-                      className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${feature.color} blur-md opacity-0 group-hover:opacity-50`}
-                      transition={{ duration: 0.3 }}
-                    />
-                  </motion.div>
-
-                  <h3 className="text-gray-900 mb-4 relative z-10 text-2xl">
-                    {feature.title}
-                  </h3>
-
-                  <p className="text-gray-600 relative z-10 text-lg leading-relaxed">
-                    {feature.description}
-                  </p>
-
-                  {/* Decorative corner accent */}
-                  <motion.div
-                    className="absolute -bottom-8 -right-8 w-32 h-32 rounded-full"
-                    style={{
-                      background: `radial-gradient(circle at center, ${feature.accent}15, transparent)`,
-                    }}
-                    animate={{
-                      scale: [1, 1.3, 1],
-                      opacity: [0.3, 0.5, 0.3],
-                    }}
-                    transition={{
-                      duration: 4,
-                      repeat: Infinity,
-                      delay: index * 0.3,
-                    }}
-                  />
-
-                  {/* Hover accent line */}
-                  <motion.div
-                    className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r ${feature.color} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
-                  />
-                </div>
-              </motion.div>
-            );
-          })}
+          {features.map((feature, index) => renderFeatureCard(feature, index))}
         </div>
       </div>
     </section>
