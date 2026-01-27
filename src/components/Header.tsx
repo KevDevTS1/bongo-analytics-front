@@ -178,7 +178,7 @@ export function Header() {
                     }}
                   />
                   
-                  <span className="relative flex items-center gap-2">
+                  <span className="relative flex items-center gap-2 text-white">
                     <Sparkles size={16} className="group-hover:rotate-12 transition-transform" />
                     Contacto
                   </span>
