@@ -1,12 +1,20 @@
 import { motion } from "motion/react";
 import { useParams, useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { ArrowLeft, CheckCircle2 } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { Button } from "./ui/button";
 import { products } from "../data/products";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "./ui/dialog";
+import { ContactForm } from "./ContactForm";
 
 // Contenido detallado para cada producto
 const productDetails: Record<string, {
@@ -188,6 +196,7 @@ const productDetails: Record<string, {
 export function ProductDetailPage() {
   const { productId } = useParams<{ productId: string }>();
   const navigate = useNavigate();
+  const [isContactOpen, setIsContactOpen] = useState(false);
   
   // Scroll al inicio cuando se carga la página o cambia el producto
   useEffect(() => {
@@ -271,10 +280,17 @@ export function ProductDetailPage() {
                 </p>
 
                 <div className="flex flex-wrap gap-4">
-                  <Button className="bg-[#0667ae] hover:bg-[#28a0c9] text-white px-8 py-6 text-lg">
+                  <Button
+                    className="bg-[#0667ae] hover:bg-[#28a0c9] text-white px-8 py-6 text-lg"
+                    onClick={() => setIsContactOpen(true)}
+                  >
                     Solicitar Demo
                   </Button>
-                  <Button variant="outline" className="border-[#0667ae] text-[#0667ae] hover:bg-[#0667ae]/10 px-8 py-6 text-lg">
+                  <Button
+                    variant="outline"
+                    className="border-[#0667ae] text-[#0667ae] hover:bg-[#0667ae]/10 px-8 py-6 text-lg"
+                    onClick={() => setIsContactOpen(true)}
+                  >
                     Contactar Ventas
                   </Button>
                 </div>
@@ -507,6 +523,19 @@ export function ProductDetailPage() {
         </section>
       </main>
       <Footer />
+
+      {/* Modal de contacto */}
+      <Dialog open={isContactOpen} onOpenChange={setIsContactOpen}>
+        <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto bg-white">
+          <DialogHeader className="sr-only">
+            <DialogTitle>Formulario de Contacto</DialogTitle>
+            <DialogDescription>
+              Completa el formulario para ponerte en contacto con nosotros
+            </DialogDescription>
+          </DialogHeader>
+          <ContactForm onClose={() => setIsContactOpen(false)} />
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
