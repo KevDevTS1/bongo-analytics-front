@@ -1,19 +1,16 @@
 import { motion } from "motion/react";
-import { useInView } from "motion/react";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { Button } from "./ui/button";
 import { products } from "../data/products";
 
 export function ProductsSection() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.2 });
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const navigate = useNavigate();
 
   return (
-    <section id="soluciones" className="py-24 bg-gray-50 relative overflow-hidden" ref={ref}>
+    <section id="soluciones" className="py-24 bg-gray-50 relative overflow-hidden">
       {/* Textura de fondo */}
       <div className="absolute inset-0 pointer-events-none opacity-5">
         <ImageWithFallback
@@ -36,7 +33,7 @@ export function ProductsSection() {
         <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
         
@@ -64,7 +61,7 @@ export function ProductsSection() {
               <motion.div
                 key={product.title}
                 initial={{ opacity: 0, y: 50 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 onMouseEnter={() => setHoveredIndex(index)}
                 onMouseLeave={() => setHoveredIndex(null)}
