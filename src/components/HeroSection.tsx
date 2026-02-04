@@ -79,7 +79,7 @@ export function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.2 }}
             >
-              Potenciamos Cristian tus decisiones con{" "}
+              Potenciamos tus decisiones con{" "}
               <span className="">inteligencia basada en datos</span>
             </motion.h1>
 
