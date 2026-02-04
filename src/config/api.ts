@@ -2,7 +2,7 @@
  * Configuración de URLs de API según el ambiente
  */
 
-type Environment = 'local' | 'pre' | 'prod';
+type Environment = "local" | "pre" | "prod";
 
 // Determinar el ambiente actual basado en la variable de entorno o la URL
 const getEnvironment = (): Environment => {
@@ -12,33 +12,39 @@ const getEnvironment = (): Environment => {
   }
 
   // Si estamos en localhost, usar local
-  if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-    return 'local';
+  if (
+    window.location.hostname === "localhost" ||
+    window.location.hostname === "127.0.0.1"
+  ) {
+    return "local";
   }
 
   // Si la URL contiene 'pre' o 'staging', usar pre
-  if (window.location.hostname.includes('pre') || window.location.hostname.includes('staging')) {
-    return 'pre';
+  if (
+    window.location.hostname.includes("pre") ||
+    window.location.hostname.includes("staging")
+  ) {
+    return "pre";
   }
 
   // Por defecto, usar prod
-  return 'prod';
+  return "prod";
 };
 
 const currentEnv = getEnvironment();
 
 // Configuración de URLs base para cada ambiente
 const API_CONFIG: Record<Environment, string> = {
-  local: 'http://localhost:5000',
-  pre: 'https://api-pre.Poinnetanalytics.com', // Cambiar por tu URL de pre-producción
-  prod: 'https://api.Poinnetanalytics.com', // Cambiar por tu URL de producción
+  local: "http://localhost:5000",
+  pre: "https://backend-401262534029.us-central1.run.app", // Cambiar por tu URL de pre-producción
+  prod: "https://backend-401262534029.us-central1.run.app", // Cambiar por tu URL de producción
 };
 
 // URL base de la API según el ambiente actual
 export const API_BASE_URL = API_CONFIG[currentEnv];
 
 // Versión de la API
-export const API_VERSION = 'v1';
+export const API_VERSION = "v1";
 
 // URL completa de la API
 export const API_URL = `${API_BASE_URL}/api/${API_VERSION}`;
