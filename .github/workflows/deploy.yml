@@ -31,16 +31,16 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t ${{ secrets.REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/front-repo/frontend:${{ github.sha }} .
+          docker build -t ${{ secrets.REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/frontend-web-poinnet/frontend:${{ github.sha }} .
 
       - name: Push Docker image
         run: |
-          docker push ${{ secrets.REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/front-repo/frontend:${{ github.sha }}
+          docker push ${{ secrets.REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/frontend-web-poinnet/frontend:${{ github.sha }}
 
       - name: Deploy to Cloud Run
         run: |
           gcloud run deploy ${{ secrets.SERVICE_NAME }} \
-            --image ${{ secrets.REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/front-repo/frontend:${{ github.sha }} \
+            --image ${{ secrets.REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/frontend-web-poinnet/frontend:${{ github.sha }} \
             --region ${{ secrets.REGION }} \
             --platform managed \
             --quiet
