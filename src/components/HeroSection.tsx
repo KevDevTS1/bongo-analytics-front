@@ -1,11 +1,6 @@
 import { motion } from "motion/react";
 import { Button } from "./ui/button";
-import {
-  ArrowRight,
-  Sparkles,
-  BarChart2,
-  Cpu,
-} from "lucide-react";
+import { ArrowRight, Sparkles, BarChart2, Cpu } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 
 export function HeroSection() {
@@ -84,10 +79,8 @@ export function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.2 }}
             >
-              Potenciamos tus decisiones con{" "}
-              <span className="">
-                inteligencia basada en datos
-              </span>
+              Potenciamos Cristian tus decisiones con{" "}
+              <span className="">inteligencia basada en datos</span>
             </motion.h1>
 
             <motion.p
@@ -96,11 +89,10 @@ export function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.4 }}
             >
-              En Poinnet convertimos datos complejos en
-              información accionable. Utilizamos analítica
-              avanzada, big data y machine learning para
-              ayudarte a optimizar procesos, anticipar
-              tendencias y maximizar tus resultados.
+              En Poinnet convertimos datos complejos en información accionable.
+              Utilizamos analítica avanzada, big data y machine learning para
+              ayudarte a optimizar procesos, anticipar tendencias y maximizar
+              tus resultados.
             </motion.p>
 
             {/* CTA */}
@@ -144,9 +136,7 @@ export function HeroSection() {
                     boxShadow: "0px 10px 30px rgba(0,0,0,0.35)",
                   }}
                 >
-                  <div className="text-white text-4xl mb-2">
-                    {stat.number}
-                  </div>
+                  <div className="text-white text-4xl mb-2">{stat.number}</div>
                   <div className="text-white/80 text-sm tracking-wide">
                     {stat.label}
                   </div>
