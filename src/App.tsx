@@ -4,6 +4,7 @@ import { HeroSection } from "./components/HeroSection";
 import { AboutSection } from "./components/AboutSection";
 import { ProductsSection } from "./components/ProductsSection";
 import { ClientsSection } from "./components/ClientsSection";
+import { IsoSection } from "./components/IsoSection";
 import { Footer } from "./components/Footer";
 import { ChatBot } from "./components/ChatBot";
 import { ProductDetailPage } from "./components/ProductDetailPage";
@@ -17,6 +18,7 @@ function HomePage() {
         <AboutSection />
         <ProductsSection />
         <ClientsSection />
+        <IsoSection />
       </main>
       <Footer />
       {/* <ChatBot /> */}

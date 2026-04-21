@@ -11,6 +11,7 @@ import {
 } from "./ui/dialog";
 import { ContactForm } from "./ContactForm";
 import logo from "../assets/Logo_Poinnet.png";
+import logoSmartec from "../assets/logo_smartec.png";
 import catalogoPdf from "./Portafolio POINNET V7151024.pdf";
 
 export function Header() {
@@ -32,6 +33,7 @@ export function Header() {
     { label: "Sobre Nosotros", id: "sobre-nosotros" },
     { label: "Soluciones", id: "soluciones" },
     { label: "Casos de Éxito", id: "casos-de-éxito" },
+    { label: "Certificaciones ISO", id: "certificaciones-iso" },
   ];
 
   return (
@@ -71,20 +73,28 @@ export function Header() {
 
         <div className="container mx-auto px-4 py-4 relative z-10">
           <div className="flex items-center justify-between">
-            {/* Logo con efecto premium */}
+            {/* Logos Poinnet + Smartec con divisor */}
             <motion.div
               whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 400, damping: 10 }}
-              className="relative"
+              className="relative flex items-center gap-3 sm:gap-4"
             >
               <img
                 src={logo}
                 alt="Poinnet"
-                className="h-20 w-40 relative z-10"
+                className="h-20 w-40 relative z-10 object-contain shrink-0"
               />
-              {/* Glow en logo al hover */}
+              <div
+                className="h-14 sm:h-16 w-px shrink-0 bg-gradient-to-b from-transparent via-[#36A9E1]/50 to-transparent"
+                aria-hidden
+              />
+              <img
+                src={logoSmartec}
+                alt="Smartec"
+                className="h-16 sm:h-[4.5rem] w-auto max-w-[140px] sm:max-w-[160px] relative z-10 object-contain object-left"
+              />
               <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-[#2E3192]/20 via-[#36A9E1]/20 to-[#662483]/20 blur-xl opacity-0 hover:opacity-100 transition-opacity duration-300 -z-10"
+                className="absolute inset-0 bg-gradient-to-r from-[#2E3192]/20 via-[#36A9E1]/20 to-[#662483]/20 blur-xl opacity-0 hover:opacity-100 transition-opacity duration-300 -z-10 rounded-lg"
               />
             </motion.div>
 
