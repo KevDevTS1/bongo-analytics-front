@@ -9,10 +9,12 @@ import {
   GraduationCap,
   Network,
   Layers,
+  Shield,
 } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 
 // Import logos reales
+import logoSmartec from "../assets/logo_smartec.png";
 import logoFNA from "../assets/fna.jpg";
 import logoUniversidad from "../assets/u-distrital.jpg";
 import logoComredes from "../assets/comredes.png";
@@ -20,6 +22,15 @@ import logoTransmilenio from "../assets/transmilenio-vector-logo.png";
 import logoPear from "../assets/pear-solutions.webp";
 
 const clients = [
+  {
+    name: "Smarctec",
+    industry: "Seguridad",
+    icon: Shield,
+    logo: logoSmartec,
+    description:
+      "Más de 1,200 dispositivos de seguridad integrados, con monitoreo centralizado en tiempo real y soporte técnico especializado para sus operaciones.",
+    stats: "1,200+ dispositivos",
+  },
   {
     name: "Pear Solutions",
     industry: "Tecnología",
@@ -69,7 +80,7 @@ const clients = [
 
 const stats = [
   {
-    number: "5+",
+    number: "6+",
     label: "Clientes Estratégicos",
     icon: Building2,
   },
@@ -155,7 +166,7 @@ export function ClientsSection() {
           })}
         </div>
 
-        {/* Clientes - Grid optimizado para 5 elementos */}
+        {/* Clientes - Grid (tarjetas con logo) */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
           {clients.map((client, index) => {
             const Icon = client.icon;
