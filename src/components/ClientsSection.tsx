@@ -1,8 +1,7 @@
 import { motion } from "motion/react";
 import { useInView } from "motion/react";
-import { useRef, useState } from "react";
+import { useRef, type CSSProperties } from "react";
 import {
-  Star,
   Camera,
   Building2,
   TrendingUp,
@@ -10,6 +9,7 @@ import {
   Network,
   Layers,
   Shield,
+  type LucideIcon,
 } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 
@@ -21,9 +21,19 @@ import logoComredes from "../assets/comredes.png";
 import logoTransmilenio from "../assets/transmilenio-vector-logo.png";
 import logoPear from "../assets/pear-solutions.webp";
 
-const clients = [
+type ClientLogoConfig = {
+  name: string;
+  industry: string;
+  icon: LucideIcon;
+  logo: string;
+  description: string;
+  stats: string;
+  logoIntrinsicZoom?: number;
+};
+
+const clients: ClientLogoConfig[] = [
   {
-    name: "Smarctec",
+    name: "Smartec",
     industry: "Seguridad",
     icon: Shield,
     logo: logoSmartec,
@@ -36,6 +46,7 @@ const clients = [
     industry: "Tecnología",
     icon: Layers,
     logo: logoPear,
+    logoIntrinsicZoom: 1.4,
     description:
       "Más de 2300 dispositivos en arrendamiento, con administración y soporte integral de los recursos tecnológicos, asegurando mayor eficiencia y disponibilidad para el cliente.",
     stats: "2,300+ dispositivos",
@@ -63,6 +74,7 @@ const clients = [
     industry: "Educación",
     icon: GraduationCap,
     logo: logoUniversidad,
+    logoIntrinsicZoom: 1.52,
     description:
       "Nuestro software de machine learning e inteligencia artificial ofrece modelos de entrenamiento avanzados, diseñados para realizar predicciones precisas y análisis detallados.",
     stats: "ML & IA Avanzado",
@@ -88,10 +100,26 @@ const stats = [
   { number: "5,100+", label: "Dispositivos Gestionados", icon: TrendingUp },
 ];
 
+const LOGO_BOX_CLASS =
+  "mx-auto flex h-32 w-full max-w-[240px] shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-gray-200 bg-white p-3 shadow-sm transition-transform duration-300 group-hover:scale-[1.02]";
+
+function clientLogoImageStyle(
+  client: ClientLogoConfig,
+): CSSProperties | undefined {
+  const zoom = client.logoIntrinsicZoom ?? 1;
+  const isUniversidad = client.name.startsWith("Universidad Distrital");
+  if (zoom <= 1 && !isUniversidad) return undefined;
+  const style: CSSProperties = {};
+  if (zoom > 1) style.transform = `scale(${zoom})`;
+  if (isUniversidad) {
+    style.filter = "contrast(1.1) brightness(1.02) saturate(1.05)";
+  }
+  return style;
+}
+
 export function ClientsSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
-  const [activeIndex, setActiveIndex] = useState(0);
 
   return (
     <section
@@ -177,21 +205,30 @@ export function ClientsSection() {
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: index * 0.15 }}
                 whileHover={{ scale: 1.03, y: -5 }}
-                onMouseEnter={() => setActiveIndex(index)}
                 className={`bg-white/10 backdrop-blur-xl p-8 rounded-2xl border border-white/20 transition-all group hover:border-[#36A9E1]/50 hover:shadow-2xl hover:shadow-[#36A9E1]/20 ${
                   index === 3 ? "lg:col-span-1" : ""
                 } ${index >= 3 ? "md:col-span-1" : ""}`}
               >
                 {/* Logo o Icon con gradiente de marca */}
-                <div className="flex justify-center mb-6">
+                <div className="mb-6 flex justify-center">
                   {client.logo ? (
-                    // Mostrar logo real
-                    <div className="w-32 h-20 bg-white rounded-xl flex items-center justify-center p-3 group-hover:scale-105 transition-transform duration-300">
-                      <img
-                        src={client.logo}
-                        alt={`Logo ${client.name}`}
-                        className="w-full h-full object-contain"
-                      />
+                    <div
+                      className={LOGO_BOX_CLASS}
+                    >
+                      {client.name === "Smartec" ? (
+                        <img
+                          src={client.logo}
+                          alt="Smartec"
+                          className="h-[4.5rem] w-full object-contain object-top object-[50%_0]"
+                        />
+                      ) : (
+                        <img
+                          src={client.logo}
+                          alt={`Logo ${client.name}`}
+                          className="max-h-full min-h-0 min-w-0 w-auto max-w-full object-contain object-center"
+                          style={clientLogoImageStyle(client)}
+                        />
+                      )}
                     </div>
                   ) : (
                     // Fallback a icono con gradiente
